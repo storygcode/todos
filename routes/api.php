@@ -21,6 +21,10 @@ use App\Models\Todo;
 
 Route::middleware('cors')->group(function()
 {
+	Route::options('/todos', function () {
+		return Todo::orderBy('created_at', 'asc')->paginate();
+	});
+
 	Route::get('/todos', function () {
 		return Todo::orderBy('created_at', 'asc')->paginate();
 	});
