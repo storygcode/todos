@@ -25,6 +25,18 @@ Route::middleware('cors')->group(function()
 		return Todo::orderBy('created_at', 'asc')->paginate();
 	});
 
+	Route::options('/todos/{id}', function ($id) {
+
+		$todo = Todo::find($id);
+
+		if($todo){
+			return $todo;	
+		}
+
+		return response()->json(['message' => 'Not found'],404);
+		
+	});
+
 	Route::get('/todos', function () {
 		return Todo::orderBy('created_at', 'asc')->paginate();
 	});
