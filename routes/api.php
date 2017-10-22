@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 use App\Models\Todo;
 
-Route::middleware('auth:api')->group(function()
+Route::middleware('cors')->group(function()
 {
 	Route::get('/todos', function () {
 		return Todo::orderBy('created_at', 'asc')->paginate();
